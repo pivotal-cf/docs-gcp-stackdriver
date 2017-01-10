@@ -1,24 +1,68 @@
 ---
-title: Installing and Configuring YOUR-PRODUCT-NAME
+title: Installing and Configuring GCP Stackdriver Nozzle for PCF
 owner: Partners
 ---
 
-This topic describes how to install and configure YOUR-PRODUCT-NAME.
+This topic describes how to install and configure GCP Stackdriver Nozzle for PCF.
 
-##<a id='install'></a> Install and Configure YOUR-PRODUCT-NAME
+##<a id='setup-gcp'></a> Step 1: Setup a GCP Project
+
+1. In a browser, navigate to https://console.cloud.google.com. If you do not have an account, sign up and use the setup wizard to create an account.
+
+1. From the GCP console, click the dropdown to the left of the search bar and select Create Project.
+Enter a project name and click Create.
+
+1. A notification appears confirming the creation of your project. Refresh the page.
+
+##<a id='setup-gcp-apis'></a> Step 2: Enable APIs
+
+1. Enable the [Stackdriver Logging API](https://console.developers.google.com/apis/api/logging.googleapis.com/overview).
+
+1. Enable the [Stackdriver Monitoring API](https://console.developers.google.com/apis/api/monitoring.googleapis.com/overview).
+
+##<a id='setup-gcp-sa'></a> Step 3: Setup a Service Account
+
+1. From the GCP console, navigate to IAM & Admin > Service accounts and click Create Service Account.
+
+1. Enter a Service account name.
+
+1. Select the checkbox to Furnish a new Private Key, then click Create.
+
+1. Save the automatically downloaded key file to a secure location.
+
+1. Navigate to IAM & Admin > IAM and locate your service account.
+
+1. From the dropdown on the right, choose Logging > Logs Configuration Writer, and Logging > Logs Writer. Then click Save.
+
+##<a id='uaa-user'></a> Step 4: Create a UAA user account
+
+1. Create a UAA user with roles below. For more information see the guide on [Creating and Managing Users with the UAA CLI](https://docs.cloudfoundry.org/adminguide/uaa-user-management.html).
+  - doppler.firehose
+  - cloud_controller.admin_read_only
+
+##<a id='install'></a> Step 5: Install and Configure GCP Stackdriver Nozzle for PCF in Ops Manager
 
 1. Download the product file from Pivotal Network.
 
 1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file. 
 
-1. Click **Add** next to the uploaded YOUR-PRODUCT-NAME tile in the Ops Manager **Available Products** view to add it to your staging area.
+1. Click **Add** next to the uploaded GCP Stackdriver Nozzle for PCF tile in the Ops Manager **Available Products** view to add it to your staging area.
 
-1. Click the newly added **YOUR-PRODUCT-NAME** tile.
+1. Click the newly added **GCP Stackdriver Nozzle for PCF** tile.
 
-1. **This portion of the procedure should tell the users how to configure the newly added tile by walking them through the sections. Which fields should they fill out? What are the different checkboxes? Include relevant screenshots here.** 
+##<a id='opsman-config'></a> Step 6: Configure in Ops Manager
 
-1. Click **Save**.
+Complete the following fields:
 
-1. Return to the Ops Manager Installation Dashboard and click **Apply Changes** to install YOUR-PRODUCT-NAME tile.
+1. *Cloud Foundry API Endpoint*: The URL for the API endpoint of your Cloud Foundry deployment. 
 
-**If needed, include additional configuration information below. For example, maybe there are configuration options not required for installation but which could be useful for certain users.**
+1. *Events to Subscribe to*: Comma seperated list (with no spaces) of the Loggregator events you would like to injest into Stackdriver.
+
+1. *UAA Username/UAA Password*: Username and Password for the account you created in <a href="#uaa-user">Step 4</a>
+
+1. *Skip SSL validation on Cloud Foundry API Endpoint*: Boolean (true or false) value to skip SSL validation, recommended only to be true for development enviornments.
+
+1. *Service Account Credentials*: Paste in the contents of your service account private key from <a href="#setup-gcp-sa">Step 3</a>. 
+
+1. *Google Project ID*: The Project ID for your GCP project. It should match the project for the *Service Account Credentials*.
+
