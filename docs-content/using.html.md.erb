@@ -3,32 +3,31 @@ title: Using GCP Stackdriver Nozzle for PCF
 owner: Partners
 ---
 
-This topic describes how to use GCP Stackdriver Nozzle for PCF.
+This topic describes how to use GCP Stackdriver Nozzle for Pivotal Cloud Foundry (PCF).
 
-##<a id='using'></a> Using GCP Stackdriver Nozzle for PCF
+With the nozzle deployed, you can view logs and metrics from PCF in [Stackdriver Logging](https://pantheon.corp.google.com/logs/viewer) and [Stackdriver Monitoring](https://pantheon.corp.google.com/monitoring). The logs and metrics available depend on the **Events to subscribe to** field that you set when [Configuring Stackdriver Nozzle for PCF](./installing.html#opsman-config). 
 
-With the Nozzle deployed all of your Cloud Foundry logs and metrics will be avaliable in [Stackdriver Logging](https://pantheon.corp.google.com/logs/viewer) and [Stackdriver Monitoring](https://pantheon.corp.google.com/monitoring).
+##<a id='logging'></a> View Logs from PCF
 
-##<a id='logging'></a> Logging
-To view streaming logs from Cloud Foundry:
+Follow these steps to view streaming logs from PCF:
 
 1. Navigate to the [Stackdriver Log Viewer](https://pantheon.corp.google.com/logs/viewer) for your GCP Project. 
 
-1. Select the 'Global' resource and click on the Play button.
+1. Select the **Global** resource and click on the **Play** button to see the logs streaming from your PCF deployment.
 
-1. You should see logs streaming from your Cloud Foundry deployment.
+For more information, see the Stackdriver Log Viewer documentation NEED LINK
 
-##<a id='monitoring'></a> Monnitoring
-To create your first chart in Stackdriver Monitoring:
+##<a id='monitoring'></a> Monitor your PCF Deployment 
+Follow these steps to create a metrics chart:
 
 1. Navigate to the [Stackdriver Monitoring Console](https://pantheon.corp.google.com/monitoring) for your GCP project. 
 
-1. Go to Dashboards > Create Dashboard 
+1. Go to **Dashboards** > **Create Dashboard**.
 
-1. Click on Add Chart
+1. Click on **Add Chart**.
 
-1. Select Custom Metrics under Resource Type
+1. Select **Custom Metrics** under **Resource Type**.
 
-1. Choose a Metric Type and click Save.
+1. Choose a **Metric Type** and click **Save** to see your chart of metrics from PCF.
 
-1. You should see your first chart of your Cloud Foundry metrics.
+For more information, see Stackdriver Monitoring documentation NEED LINK
