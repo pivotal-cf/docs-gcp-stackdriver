@@ -11,11 +11,13 @@ With the nozzle deployed, you can view logs and metrics from PCF in [Stackdriver
 
 Follow these steps to view streaming logs from PCF:
 
-1. Navigate to the [Stackdriver Log Viewer](https://pantheon.corp.google.com/logs/viewer) for your GCP Project. 
+1. Navigate to the [Stackdriver Log Viewer](https://pantheon.corp.google.com/logs/viewer) for your GCP Project. Signin withn the same credentials you used to create your project. 
 
 1. Select the **Global** resource and click on the **Play** button to see the logs streaming from your PCF deployment.
 
-For more information, see the Stackdriver Log Viewer documentation NEED LINK
+  <%= image_tag("images/log-viewer.png") %>
+
+For more information, see the (Stackdriver Log Viewer documetion)[https://cloud.google.com/logging/docs/view/logs_viewer_v2]
 
 ##<a id='monitoring'></a> Monitor your PCF Deployment 
 Follow these steps to create a metrics chart:
@@ -26,8 +28,12 @@ Follow these steps to create a metrics chart:
 
 1. Click on **Add Chart**.
 
+  <%= image_tag("images/3-add-chart.png") %>
+
 1. Select **Custom Metrics** under **Resource Type**.
 
 1. Choose a **Metric Type** and click **Save** to see your chart of metrics from PCF.
 
-For more information, see Stackdriver Monitoring documentation NEED LINK
+  <%= image_tag("images/4-metric-selected.png") %>
+
+For more information, see [Stackdriver Monitoring documentation](https://cloud.google.com/monitoring/docs/)

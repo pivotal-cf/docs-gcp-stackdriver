@@ -28,8 +28,6 @@ Follow these steps to enable the APIs required by Stackdriver Nozzle.
 
 1. Navigate to the [Stackdriver Monitoring API](https://console.developers.google.com/apis/api/monitoring.googleapis.com/overview) page and click **Enable API**.
 
-This allows 
-
 ###<a id='create-gcp-sa'></a> Create a Service Account
 
 Follow these steps to create a GCP Service Account for Stackdriver Nozzle.
@@ -40,22 +38,29 @@ Follow these steps to create a GCP Service Account for Stackdriver Nozzle.
 
 1. Enter a **Service account name**.
 
+1. From the Role drop-down menu on the right, select **Logging** > **Logs Configuration Writer, and **Logging** > **Logs Writer**. Then click **Save**.
+
+  <%= image_tag("images/create-service-account.png") %>
+
 1. Select the checkbox to **Furnish a new Private Key**, and click **Create**.
 
 1. Save the automatically downloaded key file to a secure location for use later in this topic.
 
-1. Navigate to **IAM & Admin** > **IAM** and locate your service account.
+##<a id='uaa-user'></a> Create a UAA user account
 
-1. From the drop-down menu on the right, select **Logging** > **Logs Configuration Writer, and Logging** > **Logs Writer**. Then click **Save**.
+1. Create a UAA user with access to the following groups:
+  - `doppler.firehose`
+  - `cloud_controller.admin_read_only`
 
-##<a id='uaa-user'></a> Create a UAA Admin User 
+The following commands will create a new UAA user. For information on creating a UAA user see the guide on [Creating and Managing Users with the UAA CLI](https://docs.cloudfoundry.org/adminguide/uaa-user-management.html). 
 
-Follow the instructions to [Create an Admin User](https://docs.cloudfoundry.org/adminguide/uaa-user-management.html#creating-admin-users) and add the user to the following groups:
-
-* `doppler.firehose`
-* `cloud_controller.admin_read_only`
-
-GCP Stackdriver Nozzle for PCF uses this account to access logs from PCF. 
+```
+uaac target https://uaa.[system domain url]
+uaac token client get admin -s [admin client credentials secret]
+uaac -t user add stackdriver-nozzle --password [randomly generate a password here] --emails na
+uaac -t member add cloud_controller.admin_read_only stackdriver-nozzle
+uaac -t member add doppler.firehose stackdriver-nozzle
+```
 
 ##<a id='install'></a> Install GCP Stackdriver Nozzle for PCF in Ops Manager
 
