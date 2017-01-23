@@ -34,9 +34,11 @@ Enter a project name and click Create.
 
 ##<a id='uaa-user'></a> Step 4: Create a UAA user account
 
-1. Create a UAA user with roles below. For more information see the guide on [Creating and Managing Users with the UAA CLI](https://docs.cloudfoundry.org/adminguide/uaa-user-management.html).
+1. Create a UAA user with access to the following groups:
   - doppler.firehose
   - cloud_controller.admin_read_only
+
+For information on creating a UAA user see the guide on [Creating and Managing Users with the UAA CLI](https://docs.cloudfoundry.org/adminguide/uaa-user-management.html). 
 
 ##<a id='install'></a> Step 5: Install and Configure GCP Stackdriver Nozzle for PCF in Ops Manager
 
