@@ -32,7 +32,7 @@ Follow these steps to enable the APIs required by Stackdriver Nozzle.
 
 Follow these steps to create a GCP Service Account for Stackdriver Nozzle.
 
-1. In GCP console, open the **Products and services** menu above the home icon and select **IAM & Admin** > **Service accounts**.
+1. In the GCP console, open the **Products and services** menu above the home icon and select **IAM & Admin** > **Service accounts**.
 
 1. Click **Create Service Account**.
 
@@ -65,8 +65,7 @@ Create a UAA user with access to the Firehose and Cloud Controller:
 <pre class="terminal">$ uaac -t member add doppler.firehose stackdriver-nozzle</pre>
 
 
-For information on creating a UAA user see the guide on [Creating and Managing Users with the UAA CLI](https://docs.cloudfoundry.org/adminguide/uaa-user-management.html). 
-
+For information about creating a UAA user, see the [Creating and Managing Users with the UAA CLI](http://docs.pivotal.io/pivotalcf/adminguide/uaa-user-management.html) topic. 
 
 
 ##<a id='install'></a> Install GCP Stackdriver Nozzle for PCF in Ops Manager
@@ -89,15 +88,14 @@ Follow these steps to download the product file and add it to your Ops Manager I
 
 Complete the following fields to configure GCP Stackdriver Nozzle for PCF.
 
-1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your PCF deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To find out your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in the _Deploying Elastic Runtime on AWS_ topic. 
+1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your PCF deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To determine your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in the _Deploying Elastic Runtime on AWS_ topic. 
 
 1. **Events to Subscribe to**: Enter a comma separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver.
 
-1. **UAA Username/UAA Password**: Enter the username and password for the account you created in <a href="#uaa-user">Create a UAA Admin User</a> above.
+1. **UAA Username/UAA Password**: Enter the username and password for the account you created in the <a href="#uaa-user">Create a UAA Admin User</a> step, above.
 
 1. **Skip SSL validation on Cloud Foundry API Endpoint**: For a production environment, set to `false`. For a development environment, you can set to `true`.
 
-1. **Service Account Credentials**: Paste in the contents of your service account private key from <a href="#create-gcp-sa">Set up a Service Account</a> above. 
+1. **Service Account Credentials**: Paste in the contents of your service account private key from the <a href="#create-gcp-sa">Set up a Service Account</a> step, above. 
 
-1. **Google Project ID**: Enter the Project ID for the GCP project you created in [Create a GCP Project](#create-gcp). To view your Project ID, click the project drop-down menu between the GCP logo and the search bar and select your project.
-
+1. **Google Project ID**: Enter the Project ID for the GCP project you created in the [Create a GCP Project](#create-gcp) step, above. To view your Project ID, click the project drop-down menu between the GCP logo and the search bar and select your project.
