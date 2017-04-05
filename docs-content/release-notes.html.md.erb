@@ -3,6 +3,19 @@ title: GCP Stackdriver Nozzle for PCF Release Notes
 owner: Partners
 ---
 
+##<a id="102"></a>v1.0.2
+
+**Release Date:** April 05, 2017
+
+- Fixed issue with RST_STREAM errors when writing a high volume of metrics
+- Documentation now includes requirement of 'Project > Editor' for the nozzle service account. This is required to configure metric descriptors in Stackdriver and will be replaced in the future with a more scoped role when avaliable.
+- Default instance count has changed from 1 to 2 to allow for zero downtime updates and higher avaliability
+- Fixed issue where GCP Project ID was not handled correctly in tile configuration which affected users writing to a different GCP Project than their service account originated in.
+- Metric labels now include instance name
+- Fixed issue shutting down the nozzle when a fatal error occured which resulted in a hang attempting to drain the metrics buffer
+- Removed firehose-to-syslog and boltdb dependencies. Nozzle now caches application metadata in memory.
+- Credentials are now passed directly to the nozzle instead of through system wide application default credentials.
+
 ##<a id="001"></a>v0.0.1
 
 **Release Date:** January 24, 2017
