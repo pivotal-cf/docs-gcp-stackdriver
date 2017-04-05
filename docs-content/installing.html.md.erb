@@ -32,35 +32,42 @@ Follow these steps to enable the APIs required by Stackdriver Nozzle.
 
 Follow these steps to create a GCP Service Account for Stackdriver Nozzle.
 
-1. In GCP console, open the **Products and services** menu above the home icon and select **IAM & Admin** > **Service accounts**.
+1. In the GCP console, open the **Products and services** menu above the home icon and select **IAM & Admin** > **Service accounts**.
 
 1. Click **Create Service Account**.
 
 1. Enter a **Service account name**.
 
-1. From the Role drop-down menu on the right, select **Logging** > **Logs Configuration Writer, **Logging** > **Logs Writer**, and **Project** > **Editor**. Then click **Save**.
+1. From the **Role** drop-down menu, select **Logging** > **Logs Configuration Writer, **Logging** > **Logs Writer**, and **Project** > **Editor**.
 
-  <%= image_tag("images/create-service-account.png") %>
+        <%= image_tag("images/create-service-account.png") %>
 
 1. Select the checkbox to **Furnish a new Private Key**, and click **Create**.
 
 1. Save the automatically downloaded key file to a secure location for use later in this topic.
 
-##<a id='uaa-user'></a> Create a UAA user account
+##<a id='uaa-user'></a> Create a UAA User Account
 
-1. Create a UAA user with access to the following groups:
-  - `doppler.firehose`
-  - `cloud_controller.admin_read_only`
+Create a UAA user with access to the Firehose and Cloud Controller:
 
-The following commands will create a new UAA user. For information on creating a UAA user see the guide on [Creating and Managing Users with the UAA CLI](https://docs.cloudfoundry.org/adminguide/uaa-user-management.html). 
+1. Target your system with the UAA CLI (UAAC):
+	<pre class="terminal">$ uaac target http<span>s</span>://uaa.YOUR-SYSTEM-DOMAIN</pre>
 
-```
-uaac target https://uaa.[system domain url]
-uaac token client get admin -s [admin client credentials secret]
-uaac -t user add stackdriver-nozzle --password [randomly generate a password here] --emails na
-uaac -t member add cloud_controller.admin_read_only stackdriver-nozzle
-uaac -t member add doppler.firehose stackdriver-nozzle
-```
+1. Run the following command to authenticate and obtain an access token for the admin client from the UAA server.
+<pre class="terminal">$ uaac token client get admin -s ADMIN-CLIENT-CREDENTIALS-SECRET</pre>
+
+1. Create a Stackdriver Nozzle user with the password of your choosing.
+<pre class="terminal">$ uaac -t user add stackdriver-nozzle --password PASSWORD --emails na</pre>
+
+1. Add the user to the Cloud Controller Admin Read-Only group.
+<pre class="terminal">$ uaac -t member add cloud\_controller.admin\_read\_only stackdriver-nozzle</pre>
+
+1. Add the user to the Doppler Firehose group.
+<pre class="terminal">$ uaac -t member add doppler.firehose stackdriver-nozzle</pre>
+
+
+For information about creating a UAA user, see the [Creating and Managing Users with the UAA CLI](http://docs.pivotal.io/pivotalcf/adminguide/uaa-user-management.html) topic. 
+
 
 ##<a id='install'></a> Install GCP Stackdriver Nozzle for PCF in Ops Manager
 
@@ -68,7 +75,7 @@ uaac -t member add doppler.firehose stackdriver-nozzle
 
 Follow these steps to download the product file and add it to your Ops Manager Installation Dashboard. 
 
-1. Download the product file from [Pivotal Network](https://network.pivotal.io).
+1. Download the product file from [Pivotal Network](https://network.pivotal.io/products/gcp-stackdriver-nozzle).
 
 1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file. 
 
@@ -76,21 +83,20 @@ Follow these steps to download the product file and add it to your Ops Manager I
 
 1. Click the newly added **GCP Stackdriver Nozzle for PCF** tile.
 
-1. Follow the instructions in the next section to complete each tile configuration pane.
+1. Follow the instructions in the next section to complete the tile configuration pane.
 
 ###<a id='opsman-config'></a> Configure 
 
 Complete the following fields to configure GCP Stackdriver Nozzle for PCF.
 
-1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your PCF deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To find out your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in the _Deploying Elastic Runtime on AWS_ topic. 
+1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your PCF deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To determine your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in the _Deploying Elastic Runtime on AWS_ topic. 
 
 1. **Events to Subscribe to**: Enter a comma separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver.
 
-1. **UAA Username/UAA Password**: Enter the username and password for the account you created in <a href="#uaa-user">Create a UAA Admin User</a> above.
+1. **UAA Username/UAA Password**: Enter the username and password for the account you created in the <a href="#uaa-user">Create a UAA Admin User</a> step, above.
 
 1. **Skip SSL validation on Cloud Foundry API Endpoint**: For a production environment, set to `false`. For a development environment, you can set to `true`.
 
-1. **Service Account Credentials**: Paste in the contents of your service account private key from <a href="#create-gcp-sa">Set up a Service Account</a> above. 
+1. **Service Account Credentials**: Paste in the contents of your service account private key from the <a href="#create-gcp-sa">Set up a Service Account</a> step, above. 
 
-1. **Google Project ID**: Enter the Project ID for the GCP project you created in [Create a GCP Project](#create-gcp). To view your Project ID, click the project drop-down menu between the GCP logo and the search bar and select your project.
-
+1. **Google Project ID**: Enter the Project ID for the GCP project you created in the [Create a GCP Project](#create-gcp) step, above. To view your Project ID, click the project drop-down menu between the GCP logo and the search bar and select your project.
