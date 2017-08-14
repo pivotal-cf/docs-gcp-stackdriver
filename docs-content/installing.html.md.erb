@@ -45,7 +45,9 @@ Follow these steps to create a GCP Service Account for Stackdriver Nozzle.
 
 1. Save the automatically downloaded key file to a secure location for use later in this topic.
 
-##<a id='uaa-user'></a> Create a UAA User Account
+##<a id='uaa-user'></a> Optional: Create a UAA User Account
+
+If you're using Elastic Runtime 1.9.29+, 1.10.16+, 1.11.2+, or 1.12+ then you can skip this step. For older versions of ERT you must perform the following steps.
 
 Create a UAA user with access to the Firehose and Cloud Controller:
 
@@ -92,7 +94,7 @@ Complete the following fields to configure GCP Stackdriver Nozzle for PCF.
 
 1. **Events to Subscribe to**: Enter a comma separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver.
 
-1. **UAA Username/UAA Password**: Enter the username and password for the account you created in the <a href="#uaa-user">Create a UAA Admin User</a> step, above.
+1. **UAA Username/UAA Password**: If you created a username and password in the <a href="#uaa-user">Create a UAA Admin User</a> step then enter it here. Otherwise leave this field blank to use the default credentials provided by Elastic Runtime.
 
 1. **Skip SSL validation on Cloud Foundry API Endpoint**: For a production environment, set to `false`. For a development environment, you can set to `true`.
 
