@@ -47,7 +47,8 @@ Follow these steps to create a GCP Service Account for Stackdriver Nozzle.
 
 ##<a id='uaa-user'></a> Optional: Create a UAA User Account
 
-If you're using Elastic Runtime 1.9.29+, 1.10.16+, 1.11.2+, or 1.12+ then you can skip this step. For older versions of ERT you must perform the following steps.
+If you are using Elastic Runtime v1.9.29+, v1.10.16+, v1.11.2+, or v1.12+, then skip this procedure.
+If you are using an earlier version of Pivotal Elastic Runtime, you must perform the following steps.
 
 Create a UAA user with access to the Firehose and Cloud Controller:
 
@@ -67,7 +68,7 @@ Create a UAA user with access to the Firehose and Cloud Controller:
 <pre class="terminal">$ uaac -t member add doppler.firehose stackdriver-nozzle</pre>
 
 
-For information about creating a UAA user, see the [Creating and Managing Users with the UAA CLI](http://docs.pivotal.io/pivotalcf/adminguide/uaa-user-management.html) topic. 
+For information about creating a UAA user, see [Creating and Managing Users with the UAA CLI](http://docs.pivotal.io/pivotalcf/adminguide/uaa-user-management.html). 
 
 
 ##<a id='install'></a> Install GCP Stackdriver Nozzle for PCF in Ops Manager
@@ -90,11 +91,12 @@ Follow these steps to download the product file and add it to your Ops Manager I
 
 Complete the following fields to configure GCP Stackdriver Nozzle for PCF.
 
-1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your PCF deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To determine your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in the _Deploying Elastic Runtime on AWS_ topic. 
+1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your PCF deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To determine your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in _Deploying Elastic Runtime on AWS_. 
 
 1. **Events to Subscribe to**: Enter a comma separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver.
 
-1. **UAA Username/UAA Password**: If you created a username and password in the <a href="#uaa-user">Create a UAA Admin User</a> step then enter it here. Otherwise leave this field blank to use the default credentials provided by Elastic Runtime.
+1. **UAA Username/UAA Password**: If you created a username and password in <a href="#uaa-user">Create a UAA User Account</a> then enter it here.
+   Otherwise leave this field blank to use the default credentials provided by Elastic Runtime.
 
 1. **Skip SSL validation on Cloud Foundry API Endpoint**: For a production environment, set to `false`. For a development environment, you can set to `true`.
 
