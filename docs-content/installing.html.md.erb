@@ -93,7 +93,9 @@ Complete the following fields to configure GCP Stackdriver Nozzle for PCF.
 
 1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your PCF deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To determine your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in _Deploying Elastic Runtime on AWS_. 
 
-1. **Events to Subscribe to**: Enter a comma separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver.
+1. **Whitelist for Stackdriver Logging**: Enter a comma separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver Logging.
+
+1. **Whitelist for Stackdriver Monitoring**: Enter a comma separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver Monitoring.
 
 1. **UAA Username/UAA Password**: If you created a username and password in <a href="#uaa-user">Create a UAA User Account</a> then enter it here.
    Otherwise leave this field blank to use the default credentials provided by Elastic Runtime.
