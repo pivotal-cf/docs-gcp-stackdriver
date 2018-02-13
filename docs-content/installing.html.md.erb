@@ -7,11 +7,11 @@ This topic describes how to install and configure GCP Stackdriver Nozzle for Piv
 
 ##<a id='prepare-gcp'></a> Prepare a GCP Project
 
-The GCP Stackdriver Nozzle for PCF requires that you have a GCP project with a specific configuration. Follow the steps below the prepare a GCP project.
+The GCP Stackdriver Nozzle for PCF requires that you have a GCP project with a specific configuration. Follow the steps below to prepare a GCP project.
 
 ###<a id='create-gcp'></a> Create the Project
 
-Follow these steps to create a GCP project for Stackdriver Nozzle.
+To create a GCP project for Stackdriver Nozzle, do the following:
 
 1. In a browser, navigate to the [GCP Console](https://console.cloud.google.com).
    If you do not have an account, create one.
@@ -20,9 +20,9 @@ Follow these steps to create a GCP project for Stackdriver Nozzle.
 
 1. Enter a project name and click **Create**.
 
-###<a id='setup-gcp-apis'></a> Enable APIs for your Project
+###<a id='setup-gcp-apis'></a> Enable APIs
 
-Follow these steps to enable the APIs required by Stackdriver Nozzle.
+To enable the APIs required by Stackdriver Nozzle, do the following:
 
 1. Navigate to the [Stackdriver Logging API](https://console.developers.google.com/apis/api/logging.googleapis.com/overview) page and click **Enable API**.
 
@@ -30,27 +30,27 @@ Follow these steps to enable the APIs required by Stackdriver Nozzle.
 
 ###<a id='create-gcp-sa'></a> Create a Service Account
 
-Follow these steps to create a GCP Service Account for Stackdriver Nozzle.
+To create a GCP Service Account for Stackdriver Nozzle, do the following:
 
-1. In the GCP console, open the **Products and services** menu above the home icon and select **IAM & Admin** > **Service accounts**.
+1. In the GCP console, open the **Products and services** menu above the home icon and select **IAM & Admin > Service accounts**.
 
 1. Click **Create Service Account**.
 
 1. Enter a **Service account name**.
 
-1. From the **Role** drop-down menu, select **Logging** > **Logs Configuration Writer**, **Logging** > **Logs Writer**, and **Project** > **Editor**.
+1. From the **Role** drop-down menu, select **Logging > Logs Configuration Writer**, **Logging > Logs Writer**, and **Project > Editor**.
         <%= image_tag("images/create-service-account.png") %>
 
 1. Select the checkbox to **Furnish a new Private Key**, and click **Create**.
 
 1. Save the automatically downloaded key file to a secure location for use later in this topic.
 
-##<a id='uaa-user'></a> Optional: Create a UAA User Account
+##<a id='uaa-user'></a> (Optional) Create a UAA User Account
 
-If you are using Elastic Runtime v1.9.29+, v1.10.16+, v1.11.2+, or v1.12+, then skip this procedure.
-If you are using an earlier version of Pivotal Elastic Runtime, you must perform the following steps.
+If you are using Elastic Runtime v1.9.29+, v1.10.16+, v1.11.2+, or v1.12+, skip this procedure.
+If you are using an earlier version of Pivotal Elastic Runtime, follow the steps below.
 
-Create a UAA user with access to the Firehose and Cloud Controller:
+To create a UAA user with access to the Firehose and Cloud Controller, do the following:
 
 1. Target your system with the UAA CLI (UAAC):
 	<pre class="terminal">$ uaac target http<span>s</span>://uaa.YOUR-SYSTEM-DOMAIN</pre>
@@ -66,7 +66,6 @@ Create a UAA user with access to the Firehose and Cloud Controller:
 
 1. Add the user to the Doppler Firehose group.
 <pre class="terminal">$ uaac -t member add doppler.firehose stackdriver-nozzle</pre>
-
 
 For information about creating a UAA user, see [Creating and Managing Users with the UAA CLI](http://docs.pivotal.io/pivotalcf/adminguide/uaa-user-management.html).
 
@@ -93,26 +92,26 @@ Complete the following fields to configure GCP Stackdriver Nozzle for PCF.
 
 1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your PCF deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To determine your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in _Deploying Elastic Runtime on AWS_.
 
-1. **Whitelist for Stackdriver Logging**: Enter a comma separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver Logging.
+1. **Whitelist for Stackdriver Logging**: Enter a comma-separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver Logging.
 
-1. **Whitelist for Stackdriver Monitoring**: Enter a comma separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver Monitoring.
+1. **Whitelist for Stackdriver Monitoring**: Enter a comma-separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver Monitoring.
 
-1. **UAA Username/UAA Password**: If you created a username and password in <a href="#uaa-user">Create a UAA User Account</a> then enter it here.
-   Otherwise leave this field blank to use the default credentials provided by Elastic Runtime.
+1. **UAA Username/UAA Password**: If you created a username and password in <a href="#uaa-user">Create a UAA User Account</a>, enter it here.
+   Otherwise, leave this field blank to use the default credentials provided by Elastic Runtime.
 
-1. **Skip SSL validation on Cloud Foundry API Endpoint**: For a production environment, set to `false`. For a development environment, you can set to `true`.
+1. **Skip SSL validation on Cloud Foundry API Endpoint**: For a production environment, set this value to `false`. For a development environment, set it to `true`.
 
-1. **Service Account Credentials**: Paste in the contents of your service account private key from the <a href="#create-gcp-sa">Set up a Service Account</a> step, above.
+1. **Service Account Credentials**: Paste in the contents of your service account private key from the <a href="#create-gcp-sa">Set up a Service Account</a> step above.
 
-1. **Google Project ID**: Enter the Project ID for the GCP project you created in the [Create a GCP Project](#create-gcp) step, above. To view your Project ID, click the project drop-down menu between the GCP logo and the search bar and select your project.
+1. **Google Project ID**: Enter the Project ID for the GCP project you created in the [Create a GCP Project](#create-gcp) step above. To view your Project ID, click the project drop-down menu between the GCP logo and the search bar and select your project.
 
 ###<a id='opsman-tuning'></a> Optional Tuning Parameters
 
-GCP Stackdriver Nozzle for PCF has a number of tuning parameters that can be used to alter its behaviour. For almost all use cases the defaults are appropriate.
+GCP Stackdriver Nozzle for PCF has a number of tuning parameters that can be used to alter its behavior. For almost all use cases, the defaults are appropriate.
 
-1. **Metrics Buffer Duration**: This parameter controls the interval (in seconds) between Nozzle writes to Stackdriver Monitoring. The Nozzle buffers and deduplicates incoming Firehose events over the interval for batching purposes, and to avoid exceeding request quota limits. Reducing this interval can allow for more fine-grained reporting of firehose data at the cost of significantly higher request rates to Stackdriver Monitoring, while increasing it has the converse effect.
+1. **Metrics Buffer Duration**: This parameter controls the interval (in seconds) between Nozzle writes to Stackdriver Monitoring. The Nozzle buffers and deduplicates incoming Firehose events over the interval for batching purposes, and to avoid exceeding request quota limits. Reducing this interval can allow for more fine-tuned reporting of Firehose data at the cost of significantly higher request rates to Stackdriver Monitoring, while increasing it has the converse effect.
 
-1. **Metrics Batch Size**: This parameter controls how many timeseries points are sent in each batched write to Stackdriver Monitoring. Stackdriver enforces a maximum of 200 points per request, so this number may only be adjusted *downwards* from the default of 200. Another potentially useful value for this parameter is 1, which will enforce a 1:1 mapping between timeseries point and request to Stackdriver Monitoring. This will almost certainly result in exceeding quota limits but may help identify timeseries that are causing Stackdriver errors.
+1. **Metrics Batch Size**: This parameter controls how many timeseries points are sent in each batched write to Stackdriver Monitoring. Stackdriver enforces a maximum of 200 points per request, so this number may only be adjusted downwards from the default of 200. Another potentially useful value for this parameter is 1, which will enforce a 1:1 mapping between timeseries point and request to Stackdriver Monitoring. This will almost certainly result in exceeding quota limits but may help identify timeseries that are causing Stackdriver errors.
 
 1. **Logging Buffer Duration**: This parameter controls the maximum amount of time (in seconds) the Nozzle will buffer Firehose events destined for Stackdriver Logging. If the number of buffered log messages reaches the logging batch size before the duration expires, those messages will be sent anyway. Chances are you want to change the batch size rather than this duration.
 
@@ -128,7 +127,7 @@ GCP Stackdriver Nozzle for PCF has a number of tuning parameters that can be use
 
 GCP Stackdriver Nozzle for PCF allows events from the Firehose to be blacklisted or whitelisted for publishing to Stackdriver. Events that match a blacklist filter will not be published unless they also match a whitelist filter.
 
-<p class="note">**NOTE:** The Nozzle tile ships with a restrictive whitelist for Stackdriver Monitoring by default, because Stackdriver enforces a limit of 500 custom metric names per project. Metrics documented by Pivotal as [Key Performance Indicators](https://docs.pivotal.io/pivotalcf/2-0/monitoring/kpi.html) or [Key Capacity Scaling Indicators](https://docs.pivotal.io/pivotalcf/2-0/monitoring/key-cap-scaling.html) are whitelisted for publishing to Stackdriver Monitoring, all others are blacklisted. To stay within this limit, it is recommended that Nozzle users follow a policy of explicitly whitelisting metrics of interest rather than removing the default blacklist.</p>
+<p class="note"><strong>Note:</strong> The Nozzle tile ships with a restrictive whitelist for Stackdriver Monitoring by default, because Stackdriver enforces a limit of 500 custom metric names per project. Metrics documented by Pivotal as [Key Performance Indicators](https://docs.pivotal.io/pivotalcf/2-0/monitoring/kpi.html) or [Key Capacity Scaling Indicators](https://docs.pivotal.io/pivotalcf/2-0/monitoring/key-cap-scaling.html) are whitelisted for publishing to Stackdriver Monitoring, while all others are blacklisted. To stay within this limit, it is recommended that Nozzle users follow a policy of explicitly whitelisting metrics of interest rather than removing the default blacklist.</p>
 
 A filter rule has three elements:
 
@@ -136,6 +135,6 @@ A filter rule has three elements:
 *   A *type*, which may be either "name" or "job".
     *   *name* matches against a concatenation of event _origin_ and metric _name_ with "." (e.g. `gorouter.total_requests`), and is only applicable for CounterEvent and ValueMetric event types.
     *   *job* matches against the event _job_.
-*   A *sink*, which may be either "monitoring", "logging", or "all". The latter applies the rule to all firehose events, while the other two restrict the filter rule to events destined for Stackdriver Monitoring or Logging respectively.
+*   A *sink*, which may be either "monitoring", "logging", or "all". The latter applies the rule to all Firehose events, while the other two restrict the filter rule to events destined for Stackdriver Monitoring or Logging respectively.
 
-An optional *description* field is provided for a human-readable name for each filter, to aid in identifying filters when the list elements are collapsed. This is ignored by the Stackdriver Nozzle.
+An optional description field is provided for a human-readable name for each filter, to aid in identifying filters when the list elements are collapsed. This is ignored by the Stackdriver Nozzle.
