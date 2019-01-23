@@ -3,7 +3,24 @@ title: GCP Stackdriver Nozzle for PCF Release Notes
 owner: Partners
 ---
 
-##<a id="106"></a>v2.0.1
+##<a id="108"></a>v2.1.0
+
+**Release Date:** January 24, 2019
+
+This release updates the Stackdriver Nozzle to use the Reverse Log Proxy.
+
+- Stackdriver Nozzle PCF Tile requires PCF version >= 2.3.0
+- Stemcell updated from Trusty to Xenial 170.13
+- Stackdriver Nozzle and Spinner updated to use Go 1.11
+- Stackdriver Nozzle and Spinner use dep
+- Stackdriver Nozzle and Spinner Go dependencies have been updated
+- Various lint fixes were applied across source code and packaged scripts
+- Stackdriver Nozzle utilizes Loggregator’s Reverse Log Proxy API instead of the Firehose API
+- Add foundation lable to Stackdriver Spinner result log
+- Add a syslog endpoint to the fluentd BOSH job
+- Remove the duplication of the log message field in forwarded CF application logs
+
+##<a id="107"></a>v2.0.1
 
 **Release Date:** February 27, 2018
 
