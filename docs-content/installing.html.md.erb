@@ -1,13 +1,13 @@
 ---
-title: Installing and Configuring GCP Stackdriver Nozzle for PCF
+title: Installing and Configuring GCP Stackdriver Nozzle for Pivotal Platform
 owner: Partners
 ---
 
-This topic describes how to install and configure GCP Stackdriver Nozzle for Pivotal Cloud Foundry (PCF).
+This topic describes how to install and configure GCP Stackdriver Nozzle for Pivotal Platform.
 
 ##<a id='prepare-gcp'></a> Prepare a GCP Project
 
-The GCP Stackdriver Nozzle for PCF requires that you have a GCP project with a specific configuration. Follow the steps below to prepare a GCP project.
+The GCP Stackdriver Nozzle for Pivotal Platform requires that you have a GCP project with a specific configuration. Follow the steps below to prepare a GCP project.
 
 ###<a id='create-gcp'></a> Create the Project
 
@@ -70,7 +70,7 @@ To create a UAA user with access to the Firehose and Cloud Controller, do the fo
 For information about creating a UAA user, see [Creating and Managing Users with the UAA CLI](http://docs.pivotal.io/pivotalcf/adminguide/uaa-user-management.html).
 
 
-##<a id='install'></a> Install GCP Stackdriver Nozzle for PCF in Ops Manager
+##<a id='install'></a> Install GCP Stackdriver Nozzle for Pivotal Platform in Ops Manager
 
 ###<a id='opsman-import'></a> Import to Ops Manager
 
@@ -80,17 +80,17 @@ Follow these steps to download the product file and add it to your Ops Manager I
 
 1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file.
 
-1. Click **Add** next to the uploaded GCP Stackdriver Nozzle for PCF tile in the Ops Manager **Available Products** view to add it to your staging area.
+1. Click **Add** next to the uploaded GCP Stackdriver Nozzle for Pivotal Platform tile in the Ops Manager **Available Products** view to add it to your staging area.
 
-1. Click the newly added **GCP Stackdriver Nozzle for PCF** tile.
+1. Click the newly added **GCP Stackdriver Nozzle for Pivotal Platform** tile.
 
 1. Follow the instructions in the next section to complete the tile configuration pane.
 
 ###<a id='opsman-config'></a> Configure
 
-Complete the following fields to configure GCP Stackdriver Nozzle for PCF.
+Complete the following fields to configure GCP Stackdriver Nozzle for Pivotal Platform.
 
-1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your PCF deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To determine your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in _Deploying Elastic Runtime on AWS_.
+1. **Cloud Foundry API Endpoint**: Enter the URL of the API endpoint for your Pivotal Platform deployment. This value is `https://api.YOUR-SYSYTEM-DOMAIN`. To determine your system domain, see the **Domains** pane in the Elastic Runtime tile. For an example, see [Step 5: Configure Domains](http://docs.pivotal.io/pivotalcf/customizing/cloudform-er-config.html#er-domain-config) in _Deploying Elastic Runtime on AWS_.
 
 1. **Whitelist for Stackdriver Logging**: Enter a comma-separated list, without spaces, of the Loggregator events you want to ingest into Stackdriver Logging.
 
@@ -107,7 +107,7 @@ Complete the following fields to configure GCP Stackdriver Nozzle for PCF.
 
 ###<a id='opsman-tuning'></a> Optional Tuning Parameters
 
-GCP Stackdriver Nozzle for PCF has a number of tuning parameters that can be used to alter its behavior. For almost all use cases, the defaults are appropriate.
+GCP Stackdriver Nozzle for Pivotal Platform has a number of tuning parameters that can be used to alter its behavior. For almost all use cases, the defaults are appropriate.
 
 1. **Metrics Buffer Duration**: This parameter controls the interval (in seconds) between Nozzle writes to Stackdriver Monitoring. The Nozzle buffers and deduplicates incoming Firehose events over the interval for batching purposes, and to avoid exceeding request quota limits. Reducing this interval can allow for more fine-tuned reporting of Firehose data at the cost of significantly higher request rates to Stackdriver Monitoring, while increasing it has the converse effect.
 
@@ -115,17 +115,17 @@ GCP Stackdriver Nozzle for PCF has a number of tuning parameters that can be use
 
 1. **Logging Buffer Duration**: This parameter controls the maximum amount of time (in seconds) the Nozzle will buffer Firehose events destined for Stackdriver Logging. If the number of buffered log messages reaches the logging batch size before the duration expires, those messages will be sent anyway. Chances are you want to change the batch size rather than this duration.
 
-1. **Logging Batch Size**: This parameter controls the number of Firehose events that will be buffered and sent to Stackdriver Logging in a single batch. Larger batch sizes will reduce request rates to Stackdriver, and may be necessary for heavily-utilized PCF installations.
+1. **Logging Batch Size**: This parameter controls the number of Firehose events that will be buffered and sent to Stackdriver Logging in a single batch. Larger batch sizes will reduce request rates to Stackdriver, and may be necessary for heavily-utilized Pivotal Platform installations.
 
-1. **Logging Requests In-Flight**: This parameter limits the maximum number of concurrent in-flight requests to Stackdriver Logging. This may need to be increased (along with the batch size) if Stackdriver Logging latency is observed to be high for the workload served by the PCF installation.
+1. **Logging Requests In-Flight**: This parameter limits the maximum number of concurrent in-flight requests to Stackdriver Logging. This may need to be increased (along with the batch size) if Stackdriver Logging latency is observed to be high for the workload served by the Pivotal Platform installation.
 
 1. **Metric Path Prefix**: This parameter configures the prefix prepended to all metric names that are sent to Stackdriver Monitoring. The default of "firehose" results in events with the origin `gorouter` and metric name `total_requests` being written to the custom metric name `custom.googleapis.com/firehose/gorouter.total_requests`.
 
-1. **Foundation Name**: This parameter configures the value of the "foundation" label that is added to all metrics and log messages published to Stackdriver. If you are monitoring multiple PCF foundations within a single Stackdriver project, giving each one a unique foundation name (the GCP region name, e.g. `europe-west3`, is one possibility) will distinguish which foundation the metrics and log messages were published from.
+1. **Foundation Name**: This parameter configures the value of the "foundation" label that is added to all metrics and log messages published to Stackdriver. If you are monitoring multiple Pivotal Platform foundations within a single Stackdriver project, giving each one a unique foundation name (the GCP region name, e.g. `europe-west3`, is one possibility) will distinguish which foundation the metrics and log messages were published from.
 
 ###<a id='opsman-filters'></a> Filtering Firehose Events
 
-GCP Stackdriver Nozzle for PCF allows events from the Firehose to be blacklisted or whitelisted for publishing to Stackdriver. Events that match a blacklist filter will not be published unless they also match a whitelist filter.
+GCP Stackdriver Nozzle for Pivotal Platform allows events from the Firehose to be blacklisted or whitelisted for publishing to Stackdriver. Events that match a blacklist filter will not be published unless they also match a whitelist filter.
 
 <p class="note"><strong>Note:</strong> The Nozzle tile ships with a restrictive whitelist for Stackdriver Monitoring by default, because Stackdriver enforces a limit of 500 custom metric names per project. Metrics documented by Pivotal as [Key Performance Indicators](https://docs.pivotal.io/pivotalcf/2-0/monitoring/kpi.html) or [Key Capacity Scaling Indicators](https://docs.pivotal.io/pivotalcf/2-0/monitoring/key-cap-scaling.html) are whitelisted for publishing to Stackdriver Monitoring, while all others are blacklisted. To stay within this limit, it is recommended that Nozzle users follow a policy of explicitly whitelisting metrics of interest rather than removing the default blacklist.</p>
 

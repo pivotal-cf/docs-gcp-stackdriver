@@ -1,5 +1,5 @@
 ---
-title: GCP Stackdriver Nozzle for PCF Release Notes
+title: GCP Stackdriver Nozzle for Pivotal Platform Release Notes
 owner: Partners
 ---
 
@@ -9,7 +9,7 @@ owner: Partners
 
 This release updates the Stackdriver Nozzle to use the Reverse Log Proxy.
 
-- Stackdriver Nozzle PCF Tile requires PCF version >= 2.3.0
+- Stackdriver Nozzle Pivotal Platform Tile requires Pivotal Platform version >= 2.3.0
 - Stemcell updated from Trusty to Xenial 170.13
 - Stackdriver Nozzle and Spinner updated to use Go 1.11
 - Stackdriver Nozzle and Spinner use dep
@@ -33,7 +33,7 @@ It is critical that operators follow the [upgrade instructions](upgrading.html).
 - Prepend event origin to metric names, reduce number and improve consistency of labels, provide instance index as a metric label
 - Add configuration for Stackdriver Nozzle metrics buffer size
 - Add configuration for Stackdriver Nozzle logging buffer size and debugging options
-- Support for PCF 2.0
+- Support for Pivotal Platform 2.0
 - Restrict the Stackdriver Nozzle to running as a single instance
 - Provide whitelist/blacklist feature for metrics with a default set for tile users
 - Provide per-app HTTP metrics derived from HttpStartStop events
@@ -86,4 +86,4 @@ It is critical that operators follow the [upgrade instructions](upgrading.html).
 
 **Release Date:** January 24, 2017
 
-This is the initial release of GCP Stackdriver Nozzle for PCF. 
+This is the initial release of GCP Stackdriver Nozzle for Pivotal Platform. 

@@ -1,24 +1,24 @@
 ---
-title: Using GCP Stackdriver Nozzle for PCF
+title: Using GCP Stackdriver Nozzle for Pivotal Platform
 owner: Partners
 ---
 
-This topic describes how to use GCP Stackdriver Nozzle for Pivotal Cloud Foundry (PCF).
+This topic describes how to use GCP Stackdriver Nozzle for Pivotal Platform.
 
-With the nozzle deployed, you can view logs and metrics from PCF in [Stackdriver Logging](https://console.cloud.google.com/logs/viewer) and [Stackdriver Monitoring](https://console.cloud.google.com/monitoring). The logs and metrics available depend on the **Events to subscribe to** field that you set when [Configuring Stackdriver Nozzle for PCF](./installing.html#opsman-config). 
+With the nozzle deployed, you can view logs and metrics from Pivotal Platform in [Stackdriver Logging](https://console.cloud.google.com/logs/viewer) and [Stackdriver Monitoring](https://console.cloud.google.com/monitoring). The logs and metrics available depend on the **Events to subscribe to** field that you set when [Configuring Stackdriver Nozzle for Pivotal Platform](./installing.html#opsman-config). 
 
-##<a id='logging'></a> View Logs from PCF
+##<a id='logging'></a> View Logs from Pivotal Platform
 
-Follow these steps to view streaming logs from PCF:
+Follow these steps to view streaming logs from Pivotal Platform:
 
 1. Navigate to the [Stackdriver Log Viewer](https://console.cloud.google.com/logs/viewer) for your GCP Project. Sign in with the same credentials you used to create your project. 
 
-1. Select the **Global** resource and click on the **Play** button to see the logs streaming from your PCF deployment.
+1. Select the **Global** resource and click on the **Play** button to see the logs streaming from your Pivotal Platform deployment.
 	<%= image_tag("images/log-viewer.png") %>
 
 	For more information about using the Logs Viewer, see the [Stackdriver Log Viewer documentation](https://cloud.google.com/logging/docs/view/logs_viewer_v2)
 
-##<a id='monitoring'></a> Monitor your PCF Deployment 
+##<a id='monitoring'></a> Monitor your Pivotal Platform Deployment 
 Follow these steps to create a metrics chart:
 
 1. Navigate to the [Stackdriver Monitoring Console](https://console.cloud.google.com/monitoring) for your GCP project. 
@@ -30,7 +30,7 @@ Follow these steps to create a metrics chart:
 
 1. Select **Custom Metrics** under **Resource Type**.
 
-1. Choose a **Metric Type** and click **Save** to see your chart of metrics from PCF.
+1. Choose a **Metric Type** and click **Save** to see your chart of metrics from Pivotal Platform.
 	<%= image_tag("images/4-metric-selected.png") %>
 
 	For more information, see the [Stackdriver Monitoring documentation](https://cloud.google.com/monitoring/docs/).
