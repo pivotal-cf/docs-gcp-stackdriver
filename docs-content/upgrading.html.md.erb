@@ -1,9 +1,9 @@
 ---
-title: Upgrading GCP Stackdriver Nozzle for Pivotal Platform
+title: Upgrading GCP Stackdriver Nozzle for VMware Tanzu
 owner: Partners
 ---
 
-This topic describes how to upgrade GCP Stackdriver Nozzle for Pivotal Platform to v2.0 from a v1.x release.
+This topic describes how to upgrade GCP Stackdriver Nozzle for VMware Tanzu to v2.0 from a v1.x release.
 
 <p class="note warning"><strong>WARNING:</strong>
 This release introduces significant breaking changes for Stackdriver Nozzle users. These changes
@@ -51,7 +51,7 @@ An upstream feature in Loggregator is being [tracked](https://www.pivotaltracker
 Operations Manager and Operations Manager Tile users are forced to run the `stackdriver-nozzle` job as a single instance.
 
 It is recommended that you vertically scale the `stackdriver-nozzle` VM in case of resource saturation. A number of performance optimizations in this release make sure
-that a single instance of the nozzle is able to provide enough throughput for a medium-sized Pivotal Platform installation.
+that a single instance of the nozzle is able to provide enough throughput for a medium-sized VMware Tanzu installation.
 
 If you find the need to scale the `stackdriver-nozzle` job horizontally, you must use the [BOSH release](https://github.com/cloudfoundry-community/stackdriver-tools)
 and follow guidance for the [2.0 upgrade](https://github.com/cloudfoundry-community/stackdriver-tools/blob/develop/docs/upgrading_2.0.md#singleton-deployment-of-stackdriver-nozzle).
